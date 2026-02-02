@@ -7,7 +7,7 @@ interface AIContractExplainerProps {
     contractAddress: string
 }
 
-export function AIContractExplainer({ contractAddress }: AIContractExplainerProps) {
+export function AIContractExplainer({ contractAddress: _contractAddress }: AIContractExplainerProps) {
     const [analysis, setAnalysis] = useState<{
         summary: string
         keyTerms: string[]
@@ -114,10 +114,10 @@ export function AIContractExplainer({ contractAddress }: AIContractExplainerProp
                                     <div
                                         key={i}
                                         className={`p-3 rounded-lg text-sm ${risk.level === 'low'
-                                                ? 'bg-green-50 dark:bg-green-950/20 text-green-700 dark:text-green-300'
-                                                : risk.level === 'medium'
-                                                    ? 'bg-amber-50 dark:bg-amber-950/20 text-amber-700 dark:text-amber-300'
-                                                    : 'bg-red-50 dark:bg-red-950/20 text-red-700 dark:text-red-300'
+                                            ? 'bg-green-50 dark:bg-green-950/20 text-green-700 dark:text-green-300'
+                                            : risk.level === 'medium'
+                                                ? 'bg-amber-50 dark:bg-amber-950/20 text-amber-700 dark:text-amber-300'
+                                                : 'bg-red-50 dark:bg-red-950/20 text-red-700 dark:text-red-300'
                                             }`}
                                     >
                                         <span className="font-medium uppercase text-xs">{risk.level} Risk: </span>
