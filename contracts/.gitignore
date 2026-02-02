@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# Build
+cache/
+artifacts/
+typechain-types/
+
+# Environment
+.env
+
+# Coverage
+coverage/
+coverage.json
+
+# Logs
+*.log
