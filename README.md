@@ -4,91 +4,111 @@
   <img src="web/public/favicon.svg" alt="RentChain Logo" width="80" />
   <h3>Smart Rental Agreements on Polygon Blockchain</h3>
   <p>Transform your lease into a transparent, self-executing smart contract</p>
-  
-  **Contract Address (Local):** `0x5FbDB2315678afecb367f032d93F642f64180aa3`
 </div>
+
+---
+
+## 🔗 Live Contract
+
+| Network | Contract Address | Explorer |
+|---------|-----------------|----------|
+| **Polygon Amoy** | `0x7A099190c2C0dd3E6BC2FCB57D2d6cd8c9e1Ac37` | [View on OKLink](https://www.oklink.com/amoy/address/0x7A099190c2C0dd3E6BC2FCB57D2d6cd8c9e1Ac37) |
 
 ---
 
 ## 🎯 What is RentChain?
 
-RentChain is a decentralized application (dApp) that revolutionizes rental agreements by putting them on the blockchain. Instead of paper contracts that can be lost, disputed, or tampered with, RentChain creates **smart contracts** that:
+RentChain is a **decentralized application (dApp)** that transforms rental agreements into blockchain-based smart contracts. No more paper contracts, no disputes, no middlemen.
 
-- ✅ **Cannot be altered** once signed by both parties
-- ✅ **Automatically collect rent** on schedule
-- ✅ **Hold security deposits** in escrow
-- ✅ **Release deposits** automatically when lease ends
-- ✅ **Provide proof** of all transactions on-chain
+### The Problem We Solve
+- 📄 Paper contracts get lost or damaged
+- ⚖️ Disputes over terms are expensive
+- 💸 Late rent payments cause friction
+- 🔒 Security deposits held without transparency
+
+### Our Solution
+- ✅ **Immutable contracts** on Polygon blockchain
+- ✅ **Automatic rent collection** via smart contracts
+- ✅ **Transparent deposits** held in escrow
+- ✅ **AI-powered** contract analysis
+
+---
 
 ## 🔄 How It Works
 
 ```
-┌─────────────┐    Creates     ┌──────────────────┐
-│   Landlord  │ ─────────────► │  RentChainFactory │
-└─────────────┘                └────────┬─────────┘
-                                        │
-                                        ▼ Deploys
-                               ┌──────────────────┐
-                               │  LeaseAgreement  │
-                               │   Smart Contract │
-                               └────────┬─────────┘
-                                        │
-┌─────────────┐    Signs +     ┌────────▼─────────┐
-│   Tenant    │ ─────────────► │  Pays Deposit    │
-└─────────────┘   Deposit      └────────┬─────────┘
-                                        │
-                                        ▼
-                               ┌──────────────────┐
-                               │  Monthly Rent    │
-                               │  Auto-collected  │
-                               └────────┬─────────┘
-                                        │
-                                        ▼
-                               ┌──────────────────┐
-                               │  Lease Ends      │
-                               │  Deposit Returned│
-                               └──────────────────┘
+╔═══════════════════════════════════════════════════════════════╗
+║                        RENTCHAIN FLOW                         ║
+╠═══════════════════════════════════════════════════════════════╣
+║                                                               ║
+║  1. LANDLORD CREATES LEASE                                    ║
+║     └─► Sets rent, deposit, duration, terms                   ║
+║         └─► Smart contract deployed on Polygon                ║
+║                                                               ║
+║  2. TENANT SIGNS LEASE                                        ║
+║     └─► Pays security deposit to contract                     ║
+║         └─► Lease becomes ACTIVE                              ║
+║                                                               ║
+║  3. MONTHLY PAYMENTS                                          ║
+║     └─► Tenant pays rent through contract                     ║
+║         └─► Automatically sent to landlord                    ║
+║                                                               ║
+║  4. LEASE ENDS                                                ║
+║     └─► Landlord ends lease                                   ║
+║         └─► Deposit returned to tenant                        ║
+║                                                               ║
+╚═══════════════════════════════════════════════════════════════╝
 ```
 
-### Step-by-Step Flow:
+### Lease States
+| State | Description |
+|-------|-------------|
+| `Created` | Landlord deployed, waiting for tenant |
+| `Active` | Tenant signed, rent payments active |
+| `Ended` | Lease completed normally |
+| `Terminated` | Early termination |
 
-1. **Landlord Creates Lease** - Sets rent amount, deposit, duration, and terms
-2. **Contract Deployed** - Smart contract is created on Polygon
-3. **Tenant Signs** - Pays security deposit to activate lease
-4. **Monthly Payments** - Tenant pays rent through the contract
-5. **Lease Ends** - Landlord can return deposit (full or partial)
+---
 
 ## ✨ Features
 
 | Feature | Description |
 |---------|-------------|
-| 🔐 **Tamper-Proof** | Contracts stored on Polygon blockchain |
-| ⚡ **Auto Payments** | Rent collected via smart contracts |
-| 🤖 **AI Analysis** | Terms explained in plain English |
-| 📱 **Responsive** | Works on desktop & mobile |
-| 🌙 **Dark Mode** | Beautiful UI in any theme |
-| 🛡️ **Secure** | OpenZeppelin security standards |
+| 🔐 **Tamper-Proof** | Contracts stored on Polygon blockchain - cannot be altered |
+| ⚡ **Auto Payments** | Rent collected directly via smart contract |
+| 🤖 **AI Analysis** | Complex terms explained in plain English |
+| 📱 **Responsive** | Works perfectly on desktop & mobile |
+| 🌙 **Dark Mode** | Beautiful UI in light or dark theme |
+| 🛡️ **Secure** | Built with OpenZeppelin security standards |
+| 💨 **Fast** | Polygon's low fees & quick confirmations |
+
+---
 
 ## 📦 Smart Contracts
 
-### RentChainFactory
-The factory contract that creates and tracks all lease agreements.
+### RentChainFactory (`0x7A099190c2C0dd3E6BC2FCB57D2d6cd8c9e1Ac37`)
+
+Factory contract that creates and tracks all rental agreements.
 
 ```solidity
-// Creates a new lease
+// Create a new lease
 function createLease(
     uint256 _rentAmount,      // Monthly rent in wei
-    uint256 _securityDeposit, // Security deposit in wei
+    uint256 _securityDeposit, // Deposit amount in wei
     uint256 _leaseDuration,   // Duration in seconds
     string memory _ipfsHash   // IPFS hash of terms
 ) external returns (address)
 
-// Get all leases for a landlord
+// Get landlord's leases
 function getLandlordLeases(address _landlord) external view returns (address[])
+
+// Get all leases
+function getAllLeases() external view returns (address[])
 ```
 
 ### LeaseAgreement
-Individual lease contract with payment logic.
+
+Individual lease contract with full payment logic.
 
 ```solidity
 // Tenant signs and pays deposit
@@ -104,95 +124,87 @@ function returnDeposit(uint256 amount) external
 function endLease() external
 ```
 
-## 🚀 Quick Start
+---
+
+## 🚀 Getting Started
 
 ### Prerequisites
 - Node.js 18+
 - MetaMask wallet
-- Git
+- MATIC tokens on Polygon Amoy (for gas)
 
 ### Installation
 
 ```bash
-# Clone the repository
+# Clone repository
 git clone https://github.com/yourusername/rentchain.git
 cd rentchain/rentchain-ai-lease
 
-# Install all dependencies
+# Install dependencies
 cd web && npm install
 cd ../contracts && npm install
 ```
 
-### Run Locally
+### Run Frontend
 
 ```bash
-# Terminal 1: Start blockchain
-cd contracts
-npx hardhat node
-
-# Terminal 2: Deploy contracts
-cd contracts
-npx hardhat run scripts/deploy.js --network localhost
-
-# Terminal 3: Start frontend
 cd web
 npm run dev
 ```
 
+Open http://localhost:5173
+
 ### MetaMask Setup
 
-1. **Add Network:**
-   - Name: `Hardhat Local`
-   - RPC: `http://127.0.0.1:8545`
-   - Chain ID: `31337`
-   - Currency: `ETH`
+1. **Add Polygon Amoy Network:**
+   - Network Name: `Polygon Amoy`
+   - RPC URL: `https://rpc-amoy.polygon.technology`
+   - Chain ID: `80002`
+   - Currency: `MATIC`
+   - Explorer: `https://www.oklink.com/amoy`
 
-2. **Import Test Account:**
-   ```
-   Private Key: 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
-   ```
-   (From Hardhat node output - has 10000 ETH for testing)
+2. **Get Test MATIC:**
+   - Visit [Polygon Faucet](https://faucet.polygon.technology/)
+   - Enter your wallet address
+   - Select Amoy network
 
-3. **Open:** http://localhost:5173
+---
 
 ## 📁 Project Structure
 
 ```
 rentchain-ai-lease/
-├── contracts/                 # Smart contracts
+├── contracts/                     # Solidity smart contracts
 │   ├── contracts/
-│   │   ├── RentChainFactory.sol   # Factory contract
+│   │   ├── RentChainFactory.sol   # Factory pattern
 │   │   └── LeaseAgreement.sol     # Lease logic
 │   ├── scripts/deploy.js          # Deployment script
-│   └── hardhat.config.js
-├── web/                       # React frontend
+│   └── hardhat.config.js          # Hardhat configuration
+├── web/                           # React frontend
 │   ├── src/
-│   │   ├── components/
-│   │   │   ├── Layout.tsx         # App layout
-│   │   │   ├── ErrorBoundary.tsx  # Error handling
-│   │   │   └── AIContractExplainer.tsx
-│   │   ├── pages/
-│   │   │   ├── LandingPage.tsx    # Home
-│   │   │   ├── Dashboard.tsx      # User dashboard
-│   │   │   ├── CreateLease.tsx    # Create form
-│   │   │   └── LeaseDetails.tsx   # View lease
+│   │   ├── components/            # UI components
+│   │   ├── pages/                 # Page components
 │   │   ├── hooks/useRentChain.ts  # Contract hooks
 │   │   └── main.tsx               # Entry point
-│   └── vite.config.ts
+│   └── vite.config.ts             # Vite config
 ├── .gitignore
 └── README.md
 ```
+
+---
 
 ## 🏗️ Tech Stack
 
 | Layer | Technology |
 |-------|------------|
-| Blockchain | Polygon (Hardhat for local) |
-| Smart Contracts | Solidity 0.8.24, OpenZeppelin |
-| Frontend | React 18, TypeScript, Vite |
-| Styling | Tailwind CSS, shadcn/ui |
-| Web3 | Wagmi v2, Viem |
-| Routing | React Router v7 |
+| **Blockchain** | Polygon Amoy Testnet |
+| **Smart Contracts** | Solidity 0.8.24, OpenZeppelin |
+| **Frontend** | React 18, TypeScript, Vite |
+| **Styling** | Tailwind CSS, shadcn/ui |
+| **Web3** | Wagmi v2, Viem |
+| **AI** | Gemini API (for contract analysis) |
+
+---
 
 ## 🔧 Environment Variables
 
@@ -205,27 +217,18 @@ VITE_GEMINI_API_KEY=your_gemini_key
 ### Contracts (`contracts/.env`)
 ```env
 PRIVATE_KEY=your_private_key
-AMOY_RPC_URL=https://rpc-amoy.polygon.technology
+AMOY_RPC_URL=https://polygon-amoy.g.alchemy.com/v2/your_key
 ```
 
-## 🚀 Production Deployment
-
-```bash
-# Build frontend
-cd web
-npm run build
-
-# Deploy to Polygon Amoy
-cd ../contracts
-npx hardhat run scripts/deploy.js --network amoy
-```
+---
 
 ## 📄 License
 
-MIT License - see LICENSE for details.
+MIT License
 
 ---
 
 <div align="center">
   <p>Built with ❤️ on Polygon</p>
+  <p><strong>Contract:</strong> <code>0x7A099190c2C0dd3E6BC2FCB57D2d6cd8c9e1Ac37</code></p>
 </div>

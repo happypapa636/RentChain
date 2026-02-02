@@ -40,7 +40,7 @@ const FACTORY_ABI = [
     }
 ] as const
 
-const FACTORY_ADDRESS = "0x5FbDB2315678afecb367f032d93F642f64180aa3" as `0x${string}` // Local Hardhat deployment
+const FACTORY_ADDRESS = "0x7A099190c2C0dd3E6BC2FCB57D2d6cd8c9e1Ac37" as `0x${string}` // Deployed on Polygon Amoy Testnet
 
 export function useRentChainFactory() {
     const { writeContract, data: hash, isPending, error } = useWriteContract()

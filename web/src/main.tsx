@@ -1,18 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { WagmiProvider, createConfig, http } from 'wagmi'
-import { polygonAmoy, hardhat } from 'wagmi/chains'
+import { polygonAmoy } from 'wagmi/chains'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { injected } from 'wagmi/connectors'
 import App from './App.tsx'
 import './index.css'
 
 const config = createConfig({
-    chains: [polygonAmoy, hardhat],
+    chains: [polygonAmoy],
     connectors: [injected()],
     transports: {
-        [polygonAmoy.id]: http(),
-        [hardhat.id]: http('http://127.0.0.1:8545'),
+        [polygonAmoy.id]: http('https://polygon-amoy.g.alchemy.com/v2/Db6C4RgfEaaDVcHvPllsg'),
     },
 })
 
