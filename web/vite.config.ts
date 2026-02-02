@@ -7,7 +7,27 @@ export default defineConfig({
     plugins: [react()],
     resolve: {
         alias: {
-            "@": path.resolve(__dirname, "./src"),
+            '@': path.resolve(__dirname, './src'),
         },
+    },
+    build: {
+        target: 'esnext',
+        minify: 'esbuild',
+        sourcemap: false,
+        rollupOptions: {
+            output: {
+                manualChunks: {
+                    vendor: ['react', 'react-dom', 'react-router-dom'],
+                    wagmi: ['wagmi', 'viem', '@tanstack/react-query'],
+                },
+            },
+        },
+    },
+    server: {
+        port: 5173,
+        strictPort: true,
+    },
+    preview: {
+        port: 4173,
     },
 })
